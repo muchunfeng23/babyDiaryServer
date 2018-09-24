@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- <mapper namespace="cn.no7player.mapper.UserMapper"> -->
+<mapper namespace="com.mcf.mybatis.mapper.ArticleMapper">
+  
+  <insert id="writeArticle" parameterType="com.mcf.mybatis.model.Article" >
+  		insert into articles(id,openId,title,content,audios,pics,intels,addDate,addDateStr)  
+             values(#{id},#{openId},#{title},#{content},#{audios},#{pics},#{intels},#{addDate},#{addDateStr})  
+  </insert>
+  <select id="readArticle" parameterType="string" resultType="com.mcf.mybatis.model.Article">
+  		select * from articles where id = #{id}
+  </select>
+  
+  <select id="getAllMyArticles" parameterType="string" resultType="com.mcf.bean.ArticleInRedis">
+  	select id,title,content,addDateStr,intels from articles where openId = #{openId}
+  </select>
+</mapper>
